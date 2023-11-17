@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <!-- EJERCICIO 3
+    Llenar un vector de 20 elementos, imprimir la posición y el valor del elemento mayor
+    almacenado en el vector. Suponga que todos los elementos del vector son diferentes. -->
+    <script>
+        // Función para generar un vector de 20 elementos diferentes
+        function generarVector() {
+            const vector = [];
+            for (let i = 1; i <= 20; i++) {
+                vector.push(i * 5); // Valores diferentes (multiplos de 5 para este ejemplo)
+            }
+            return vector;
+        }
+
+        // Función para encontrar la posición y el valor del elemento mayor en un vector
+        function encontrarElementoMayor(vector) {
+            let maxValor = vector[0];
+            let maxPosicion = 0;
+
+            for (let i = 1; i < vector.length; i++) {
+                if (vector[i] > maxValor) {
+                    maxValor = vector[i];
+                    maxPosicion = i;
+                }
+            }
+
+            return { posicion: maxPosicion, valor: maxValor };
+        }
+
+        // Función asíncrona para mostrar resultados en el DOM
+        async function mostrarResultadoEnDOM() {
+            const vector = generarVector();
+            const resultadoMayor = encontrarElementoMayor(vector);
+
+            // Esperar un segundo simulando un proceso asíncrono (puedes quitar esto en tu implementación real)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Mostrar los resultados en el DOM
+            document.body.innerHTML = `
+                <h2>Resultado: Elemento Mayor en el Vector</h2>
+                <p>Vector: ${vector.join(', ')}</p>
+                <p>Posición del Elemento Mayor: ${resultadoMayor.posicion}</p>
+                <p>Valor del Elemento Mayor: ${resultadoMayor.valor}</p>
+            `;
+        }
+
+        // Llamar a la función principal
+        mostrarResultadoEnDOM();
+    </script>
+
+</body>
+</html>

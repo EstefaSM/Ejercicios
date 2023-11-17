@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promedio y Datos Mayores</title>
+</head>
+<body>
+    <!-- EJERCICIO 1
+    Calcular el promedio de 50 valores almacenados en un vector. Determinar además
+    cuantos son mayores que el promedio, imprimir el promedio, el numero de datos
+    mayores que el promedio y una lista de valores mayores que el promedio. -->
+
+
+    <script>
+        // Función para generar un vector de 50 valores aleatorios
+        function generarVector() {
+            const vector = [];
+            for (let i = 0; i < 50; i++) {
+                vector.push(Math.floor(Math.random() * 100) + 1); // Números aleatorios del 1 al 100
+            }
+            return vector;
+        }
+
+        // Función asíncrona para calcular el promedio y los datos mayores
+        async function calcularPromedioYMayores() {
+            const vector = generarVector();
+            
+            // Calcular el promedio
+            const promedio = vector.reduce((acc, val) => acc + val, 0) / vector.length;
+
+            // Filtrar los valores mayores que el promedio
+            const mayoresQuePromedio = vector.filter(val => val > promedio);
+
+            // Esperar un segundo simulando un proceso asíncrono (puedes quitar esto en tu implementación real)
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Mostrar los resultados en el DOM
+            document.body.innerHTML = `
+                <h2>Resultados:</h2>
+                <p>Promedio: ${promedio.toFixed(2)}</p>
+                <p>Número de datos mayores que el promedio: ${mayoresQuePromedio.length}</p>
+                <p>Valores mayores que el promedio: ${mayoresQuePromedio.join(', ')}</p>
+            `;
+        }
+
+        calcularPromedioYMayores();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 10</title>
+</head>
+<body>
+
+    <!-- EJERCICIO 10
+    Diseñe un algoritmo que lea dos vectores A y B de 20 elementos cada uno y multiplique
+    el primer elemento de A con el ultimo elemento de B y luego el segundo elemento de A
+    por el diecinueveavo elemento de B y así sucesivamente hasta llegar al veinteavo
+    elemento de A por el primer elemento de B. El resultado de la multiplicación
+    almacenarlo en un vector C. -->
+
+    <script>
+        // Función para generar dos vectores de 20 elementos cada uno
+        function generarVectores() {
+            const vectorA = [];
+            const vectorB = [];
+
+            for (let i = 1; i <= 20; i++) {
+                vectorA.push(i * 2); // Números pares en A (puedes cambiar esto según tus necesidades)
+                vectorB.push(i * 3); // Números múltiplos de 3 en B (puedes cambiar esto según tus necesidades)
+            }
+
+            return { vectorA, vectorB };
+        }
+
+        // Función para realizar la multiplicación y almacenar los resultados en un vector C
+        function multiplicarYAlmacenar(vectorA, vectorB) {
+            const vectorC = [];
+
+            for (let i = 0; i < vectorA.length; i++) {
+                const resultadoMultiplicacion = vectorA[i] * vectorB[(vectorB.length - 1 - i) % vectorB.length];
+                vectorC.push(resultadoMultiplicacion);
+            }
+
+            return vectorC;
+        }
+
+        // Función asíncrona para mostrar resultados en el DOM
+        async function mostrarResultadoEnDOM() {
+            const { vectorA, vectorB } = generarVectores();
+            const vectorC = multiplicarYAlmacenar(vectorA, vectorB);
+
+            // Esperar un segundo simulando un proceso asíncrono (puedes quitar esto en tu implementación real)
+            await new Promise(resolve => setTimeout(resolve, 3000));
+
+            // Mostrar los resultados en el DOM
+            document.body.innerHTML = `
+                <h2>Multiplicación de Vectores</h2>
+                <p>Vector A: ${vectorA.join(', ')}</p>
+                <p>Vector B: ${vectorB.join(', ')}</p>
+                <p>Vector C (Resultados de la Multiplicación): ${vectorC.join(', ')}</p>
+            `;
+        }
+
+        // Llamar a la función principal
+        mostrarResultadoEnDOM();
+    </script>
+
+</body>
+</html>

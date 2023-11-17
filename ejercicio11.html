@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 11</title>
+</head>
+<body>
+    <!-- EJERCICIO 11
+    Diseñe un algoritmo que almacene en un vector llamado FIB[100] los 100 primeros
+    números de la serie fibonacci. -->
+
+    <script>
+        // Función para generar los primeros n números de la serie Fibonacci
+        function generarFibonacci(n) {
+            const fib = [0, 1]; // Los dos primeros números de la serie
+            for (let i = 2; i < n; i++) {
+                fib.push(fib[i - 1] + fib[i - 2]);
+            }
+            return fib;
+        }
+
+        // Función asíncrona para mostrar los resultados en el DOM
+        async function mostrarResultadoEnDOM() {
+            const fib100 = generarFibonacci(100);
+
+            // Esperar un segundo simulando un proceso asíncrono (puedes quitar esto en tu implementación real)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Mostrar los resultados en el DOM
+            document.body.innerHTML = `
+                <h2>Serie Fibonacci (primeros 100 números)</h2>
+                <p>FIB[100]: ${fib100.join(', ')}</p>
+            `;
+        }
+
+        // Llamar a la función principal
+        mostrarResultadoEnDOM();
+    </script>
+
+</body>
+</html>

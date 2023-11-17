@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación de Orden en un Vector</title>
+</head>
+<body>
+    <!-- EJERCICIO 8 
+    Se tiene el vector A con 100 elementos almacenados. Diseñe un algoritmo que escriba
+    “SI” si el vector esta ordenado ascendentemente o “NO” si el vector no esta ordenado -->
+
+    <script>
+        // Función para generar un vector de 100 elementos
+        function generarVector() {
+            const vector = [];
+            for (let i = 1; i <= 100; i++) {
+                vector.push(i); // Vector ordenado ascendentemente
+            }
+            // Valor desordenado, cambia el resultado
+            // for (let i = 100; i >= 1; i--) { vector.push(i); }
+            return vector;
+        }
+
+        // Función para verificar si un vector está ordenado ascendentemente
+        function estaOrdenadoAscendentemente(vector) {
+            for (let i = 0; i < vector.length - 1; i++) {
+                if (vector[i] > vector[i + 1]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Función asíncrona para mostrar el resultado en el DOM
+        async function mostrarResultadoEnDOM() {
+            const vectorA = generarVector();
+            const ordenado = estaOrdenadoAscendentemente(vectorA);
+
+            // Esperar un segundo simulando un proceso asíncrono (puedes quitar esto en tu implementación real)
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Mostrar el resultado en el DOM
+            document.body.innerHTML = `
+                <h2>Verificación de Orden en un Vector</h2>
+                <p>Vector A: ${vectorA.join(', ')}</p>
+                <p>Resultado: ${ordenado ? 'SI' : 'NO'}</p>
+            `;
+        }
+
+        // Llamar a la función principal
+        mostrarResultadoEnDOM();
+    </script>
+
+</body>
+</html>

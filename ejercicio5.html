@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+</head>
+<body>
+    <!-- EJERCICIO 5
+    Almacenar 300 números en un vector, imprimir cuantos son ceros, cuantos son
+    negativos, cuantos positivos. Imprimir además la suma de los negativos y la suma de los
+    positivos. -->
+
+    <script>
+        // Función para generar un vector de 300 números
+        function generarVector() {
+            const vector = [];
+            for (let i = 0; i < 300; i++) {
+                vector.push(Math.floor(Math.random() * 201) - 100); // Números aleatorios entre -100 y 100
+            }
+            return vector;
+        }
+
+        // Función para realizar el análisis de los números en un vector
+        function analizarNumeros(vector) {
+            let ceros = 0;
+            let negativos = 0;
+            let positivos = 0;
+            let sumaNegativos = 0;
+            let sumaPositivos = 0;
+
+            for (let i = 0; i < vector.length; i++) {
+                if (vector[i] === 0) {
+                    ceros++;
+                } else if (vector[i] < 0) {
+                    negativos++;
+                    sumaNegativos += vector[i];
+                } else {
+                    positivos++;
+                    sumaPositivos += vector[i];
+                }
+            }
+
+            return { ceros, negativos, positivos, sumaNegativos, sumaPositivos };
+        }
+
+        // Función asíncrona para mostrar resultados en el DOM
+        async function mostrarResultadoEnDOM() {
+            const vector = generarVector();
+            const resultadoAnalisis = analizarNumeros(vector);
+
+            // Esperar un segundo simulando un proceso asíncrono (puedes quitar esto en tu implementación real)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Mostrar los resultados en el DOM
+            document.body.innerHTML = `
+                <h2>Análisis de números en un vector</h2>
+                <p>Cantidad de ceros: ${resultadoAnalisis.ceros}</p>
+                <p>Cantidad de negativos: ${resultadoAnalisis.negativos}</p>
+                <p>Cantidad de positivos: ${resultadoAnalisis.positivos}</p>
+                <p>Suma de negativos: ${resultadoAnalisis.sumaNegativos}</p>
+                <p>Suma de positivos: ${resultadoAnalisis.sumaPositivos}</p>
+            `;
+        }
+
+        // Llamar a la función principal
+        mostrarResultadoEnDOM();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda Secuencial en un Vector</title>
+</head>
+<body>
+
+    <!-- EJERCICIO 9
+    Diseñe un algoritmo que lea un numero cualquiera y lo busque en el vector X, el cual
+    tiene almacenados 80 elementos. Escribir la posición donde se encuentra almacenado el
+    numero en el vector o el mensaje “NO” si no lo encuentra. Búsqueda secuencial. -->
+
+    <script>
+        // Función para generar un vector de 80 elementos
+        function generarVector() {
+            const vector = [];
+            for (let i = 1; i <= 80; i++) {
+                vector.push(i * 2); // Números pares (puedes cambiar esto según tus necesidades)
+            }
+            return vector;
+        }
+
+        // Función para realizar una búsqueda secuencial en un vector
+        function busquedaSecuencial(numero, vector) {
+            for (let i = 0; i < vector.length; i++) {
+                if (vector[i] === numero) {
+                    return i; // Se encontró el número en la posición i
+                }
+            }
+            return -1; // No se encontró el número en el vector
+        }
+
+        // Función asíncrona para leer un número, realizar la búsqueda y mostrar el resultado en el DOM
+        async function buscarNumeroEnVectorYMostrarResultado() {
+            const numeroBuscado = parseInt(prompt("Ingrese un número:"));
+            const vectorX = generarVector();
+            const posicion = busquedaSecuencial(numeroBuscado, vectorX);
+
+            // Esperar un segundo simulando un proceso asíncrono (puedes quitar esto en tu implementación real)
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Mostrar el resultado en el DOM
+            document.body.innerHTML = `
+                <h2>Búsqueda Secuencial en un Vector</h2>
+                <p>Vector X: ${vectorX.join(', ')}</p>
+                <p>Resultado: ${posicion !== -1 ? `El número se encuentra en la posición ${posicion}` : 'NO'}</p>
+            `;
+        }
+
+        // Llamar a la función principal
+        buscarNumeroEnVectorYMostrarResultado();
+    </script>
+
+</body>
+</html>

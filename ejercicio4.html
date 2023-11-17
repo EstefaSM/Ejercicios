@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    <!-- EJERCICIO 4
+    Almacenar 500 números en un vector, elevar al cuadrado cada valor almacenado en el
+    vector, almacenar el resultado en otro vector. Imprimir el vector original y el vector
+    resultante. -->
+    <script>
+        // Función para generar un vector de 500 números
+        function generarVector() {
+            const vector = [];
+            for (let i = 1; i <= 500; i++) {
+                vector.push(Math.floor(Math.random() * 100) + 1); // Números aleatorios del 1 al 100
+            }
+            return vector;
+        }
+
+        // Función para elevar al cuadrado cada valor en un vector
+        function elevarAlCuadrado(vector) {
+            return vector.map(valor => valor ** 2);
+        }
+
+        // Función asíncrona para mostrar resultados en el DOM
+        async function mostrarResultadoEnDOM() {
+            const vectorOriginal = generarVector();
+            const vectorCuadrado = elevarAlCuadrado(vectorOriginal);
+
+            // Esperar un segundo simulando un proceso asíncrono (puedes quitar esto en tu implementación real)
+            await new Promise(resolve => setTimeout(resolve, 3000));
+
+            // Mostrar los resultados en el DOM
+            document.body.innerHTML = `
+                <h2>Resultado: Elevación al Cuadrado de un Vector</h2>
+                <p>Vector Original: ${vectorOriginal.join(', ')}</p>
+                <p>Vector Resultante (Cuadrados): ${vectorCuadrado.join(', ')}</p>
+            `;
+        }
+
+        // Llamar a la función principal
+        mostrarResultadoEnDOM();
+    </script>
+
+</body>
+</html>

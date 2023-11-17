@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7</title>
+</head>
+<body>
+    <!-- EJERCICIO 7
+    Se tienen almacenados en la memoria dos vectores M y N de cien elementos cada uno.
+    Hacer un algoritmo que escriba la palabra “Iguales” si ambos vectores son iguales y
+    “Diferentes” si no lo son.
+    Serán iguales cuando en la misma posición de ambos vectores se tenga el mismo
+    valor para todos los elementos. -->
+
+    <script>
+        // Función para generar dos vectores de 100 elementos cada uno
+        function generarVectores() {
+            const vectorM = [];
+            const vectorN = [];
+
+            for (let i = 0; i < 100; i++) {
+                vectorM.push(Math.floor(Math.random() * 100) + 1); // Números aleatorios del 1 al 100
+                vectorN.push(Math.floor(Math.random() * 100) + 1);
+            }
+
+            return { vectorM, vectorN };
+        }
+
+        // Función para comparar dos vectores y determinar si son iguales
+        function sonVectoresIguales(vectorM, vectorN) {
+            for (let i = 0; i < vectorM.length; i++) {
+                if (vectorM[i] !== vectorN[i]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Función asíncrona para mostrar el resultado en el DOM
+        async function mostrarResultadoEnDOM() {
+            const { vectorM, vectorN } = generarVectores();
+            const iguales = sonVectoresIguales(vectorM, vectorN);
+
+            // Esperar un segundo simulando un proceso asíncrono (puedes quitar esto en tu implementación real)
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Mostrar el resultado en el DOM
+            document.body.innerHTML = `
+                <h2>Comparación de Vectores</h2>
+                <p>Vector M: ${vectorM.join(', ')}</p>
+                <p>Vector N: ${vectorN.join(', ')}</p>
+                <p>Resultado: ${iguales ? 'Iguales' : 'Diferentes'}</p>
+            `;
+        }
+
+        // Llamar a la función principal
+        mostrarResultadoEnDOM();
+    </script>
+
+</body>
+</html>

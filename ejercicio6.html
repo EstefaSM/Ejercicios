@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+</head>
+<body>
+    <!-- EJERCICIO 6
+    Almacenar 150 números en un vector, almacenarlos en otro vector en orden inverso al
+    vector original e imprimir el vector resultante. -->
+
+    <script>
+        // Función para generar un vector de 150 números
+        function generarVector() {
+            const vector = [];
+            for (let i = 1; i <= 150; i++) {
+                vector.push(Math.floor(Math.random() * 1000) + 1); // Números aleatorios del 1 al 1000
+            }
+            return vector;
+        }
+
+        // Función para invertir el orden de un vector
+        function invertirVector(vector) {
+            return vector.slice().reverse(); // Usamos slice() para crear una copia y no modificar el vector original
+        }
+
+        // Función asíncrona para mostrar resultados en el DOM
+        async function mostrarResultadoEnDOM() {
+            const vectorOriginal = generarVector();
+            const vectorInverso = invertirVector(vectorOriginal);
+
+            // Esperar un segundo simulando un proceso asíncrono (puedes quitar esto en tu implementación real)
+            await new Promise(resolve => setTimeout(resolve, 3000));
+
+            // Mostrar los resultados en el DOM
+            document.body.innerHTML = `
+                <h2>Orden inverso de un vector</h2>
+                <p>Vector Original: ${vectorOriginal.join(', ')}</p>
+                <p>Vector Resultante (Inverso): ${vectorInverso.join(', ')}</p>
+            `;
+        }
+
+        // Llamar a la función principal
+        mostrarResultadoEnDOM();
+    </script>
+
+</body>
+</html>
